@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/warnaBackground"
+    tools:context=".MainActivity">
+        <View
+            android:id="@+id/header"
+            android:layout_width="410dp"
+            android:layout_height="225dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="410dp"
+            android:layout_height="250dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="250dp">
+                <ImageView
+                    android:layout_width="410dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/logocoffe">
+                </ImageView>
+                <TextView
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:text="An application for helping you find your suitable cafes that are located in Malang City"
+                    android:layout_marginLeft="-380dp"
+                    android:layout_marginTop="170dp"
+                    android:layout_marginRight="20dp"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/poppinsmedium">
+                </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:orientation="vertical"
+            android:padding="30dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header">
+
+                <EditText
+                    android:id="@+id/emailLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Email Address / Username"
+                    android:drawableRight="@drawable/emaillogo"
+                    android:paddingEnd="30dp"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="40dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/warnaHint" />
+                <EditText
+                    android:id="@+id/passwordLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="Password"
+                    android:drawableRight="@drawable/iconpassword"
+                    android:paddingEnd="30dp"
+                    android:inputType="textPassword"
+                    android:paddingLeft="30dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/warnaHint" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/buttonLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/bg_button"
+                    android:text="Login"
+                    android:fontFamily="@font/poppinssemibold"
+                    android:textColor="@color/white"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="125dp"
+                    android:layout_height="20dp"
+                    android:text="Forgot Password?"
+                    android:layout_marginLeft="226dp"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/poppinsregular"
+                    android:textColor="@color/warnaText">
+                </TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="550dp">
+
+                <TextView
+                    android:layout_width="125dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="25dp"
+                    android:text="Or Login with"
+                    android:fontFamily="@font/poppinsregular"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="150dp">
+                </TextView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:layout_margin="2dp">
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/GoogleLogin"
+                            android:layout_width="350dp"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginLeft="30dp"
+                            android:background="@drawable/bg_button2"
+                            android:text="Login with Google"
+                            android:drawablePadding="-50dp"
+                            android:fontFamily="@font/poppinssemibold"
+                            android:textColor="@color/warnaText"
+                            android:textAllCaps="false"
+                            android:textSize="16sp"
+                            android:drawableLeft="@drawable/google"
+                            android:paddingStart="80dp"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="170dp"
+                    android:layout_height="20dp"
+                    android:text="Don’t have an account?"
+                    android:fontFamily="@font/poppinsregular"
+                    android:layout_marginLeft="80dp"
+                    android:textColor="@color/black">
+                </TextView>
+                <TextView
+                    android:id="@+id/RegisterNow"
+                    android:layout_width="90dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="-20dp"
+                    android:text="Register now"
+                    android:fontFamily="@font/poppinsregular"
+                    android:layout_marginLeft="250dp"
+                    android:clickable="true"
+                    android:onClick="onRegisterNowClick"
+                    android:textStyle="italic">
+                </TextView>
+                <TextView
+                    android:layout_width="265dp"
+                    android:layout_height="20dp"
+                    android:text="By signing up, you are agree with our"
+                    android:fontFamily="@font/poppinsregular"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginLeft="32dp"
+                    android:textSize="13sp">
+                </TextView>
+                <TextView
+                    android:id="@+id/TermAndConditions"
+                    android:layout_width="130dp"
+                    android:layout_height="20dp"
+                    android:text="Terms &amp; Conditions"
+                    android:layout_marginTop="-20dp"
+                    android:layout_marginLeft="274dp"
+                    android:textSize="13sp"
+                    android:onClick="onTermsandConditionClick"
+                    android:textStyle="italic">
+                </TextView>
+
+        </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
