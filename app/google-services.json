@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "121034913156",
+    "firebase_url": "https://project-akhir-pam-e48df-default-rtdb.firebaseio.com",
+    "project_id": "project-akhir-pam-e48df",
+    "storage_bucket": "project-akhir-pam-e48df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121034913156:android:cb7188d881373fb58c19d1",
+        "android_client_info": {
+          "package_name": "com.example.projectakhirpam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqcsZOzPBvW91bDoa0dSD7TTAkhb_KsZc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
