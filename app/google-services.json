@@ -13,7 +13,20 @@
           "package_name": "com.example.projectakhirpam"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "121034913156-ihf9871k6g6s26k86csov8nsfr2fkjig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.projectakhirpam",
+            "certificate_hash": "d7a8f77dce2e7492dec3780dd8a090c210efcc2c"
+          }
+        },
+        {
+          "client_id": "121034913156-esrivfuf58u7s4i6nbb8kfqtr4n6lluu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAqcsZOzPBvW91bDoa0dSD7TTAkhb_KsZc"
@@ -21,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121034913156-esrivfuf58u7s4i6nbb8kfqtr4n6lluu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

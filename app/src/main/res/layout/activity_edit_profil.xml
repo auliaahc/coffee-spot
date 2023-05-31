@@ -22,7 +22,6 @@
             android:background="@android:color/transparent"
             android:src="@drawable/icon_back"
             android:layout_alignParentStart="true"
-            android:layout_topVertical="true"
             android:padding="8dp">
         </ImageButton>
     </RelativeLayout>
