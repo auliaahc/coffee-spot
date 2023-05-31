@@ -45,7 +45,7 @@
             <TextView
                 android:layout_width="155dp"
                 android:layout_height="20dp"
-                android:text="AADK Coffee & Eatery"
+                android:text="AADK Coffee &amp; Eatery"
                 android:fontFamily="@font/poppinsmedium">
             </TextView>
             <TextView
