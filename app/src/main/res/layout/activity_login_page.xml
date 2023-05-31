@@ -148,7 +148,7 @@
                             android:layout_weight="3"
                             android:text="Register now"
                             android:fontFamily="@font/poppinsregular"
-                            android:textColor="@color/coklat"
+                            android:textColor="@color/warnaButton"
                             android:onClick="onRegisterNowClick"
                             android:textStyle="italic"
                             android:layout_marginLeft="1dp">
