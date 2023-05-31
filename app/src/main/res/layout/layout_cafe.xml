@@ -49,7 +49,7 @@
                 android:fontFamily="@font/poppinsmedium">
             </TextView>
             <TextView
-                android:layout_width="155dp"
+                android:layout_width="175dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginLeft="-156dp"
@@ -61,7 +61,7 @@
                 android:layout_width="100dp"
                 android:layout_height="15dp"
                 android:layout_marginTop="58dp"
-                android:layout_marginLeft="-155dp"
+                android:layout_marginLeft="-175dp"
                 android:text="Opens : 07.00 - 23.59"
                 android:textSize="9sp"
                 android:fontFamily="@font/poppinsmedium">
