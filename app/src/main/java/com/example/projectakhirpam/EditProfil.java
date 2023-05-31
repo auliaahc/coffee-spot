@@ -6,6 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class EditProfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_profile);
+        setContentView(R.layout.activity_edit_profil);
     }
 }
