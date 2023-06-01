@@ -106,8 +106,10 @@ public class LoginActivity extends AppCompatActivity {
 
                             Users users = new Users();
                             users.setUserId(user.getUid());
-                            users.setName(user.getDisplayName());
                             users.setProfile(user.getPhotoUrl().toString());
+                            users.setName(user.getDisplayName());
+                            users.setPhoneNumber(0);
+                            users.setEmail(user.getEmail());
 
                             database.getReference().child("Users").child(user.getUid()).setValue(users);
 
