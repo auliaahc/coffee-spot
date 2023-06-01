@@ -24,6 +24,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
@@ -104,6 +105,15 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = auth.getCurrentUser();
 
+//                            Untuk Update RDB Cafe
+//                            DatabaseReference cafeRef = FirebaseDatabase.getInstance().getReference().child("Cafes");
+//                            Cafes cafe = new Cafes("Handall Coffee", "06:00 - 22:00", "Jl. Semanggi Timur No.7, Jatimulyo, Kec. Lowokwaru, Kota Malang", "Top Offers",
+//                                    "Cafe Handall Malang berlokasi di Jatimulyo, Lowokwaru. Tempat ini sangat cocok untuk Anda yang ingin mengerjakan tugas, mengadakan event, atau tempat nongkrong bersama teman. Di sini menyediakan " +
+//                                            "berbagai menu spesial mulai dari western food hingga Indonesian food yang tentunya enak. Handall Coffee memiliki bangunan 2 tingkat dengan area smooking dan non smoking room yang luas. Di sini juga tersedia berbagai fasilitas lengkap seperti membership, " +
+//                                            "wifi, parkir luas, dan sebagainya.");
+//                            String key = cafeRef.push().getKey();
+//                            cafeRef.child(key).setValue(cafe);
+
                             Users users = new Users();
                             users.setUserId(user.getUid());
                             users.setProfile(user.getPhotoUrl().toString());
@@ -112,7 +122,6 @@ public class LoginActivity extends AppCompatActivity {
                             users.setEmail(user.getEmail());
 
                             database.getReference().child("Users").child(user.getUid()).setValue(users);
-
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
 
