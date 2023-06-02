@@ -63,16 +63,16 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/name_detail"
+                android:id="@+id/nama_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsmedium"
-                android:hint="Nama caffee"
+                android:hint="Nama cafe"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/open_detail"
+                android:id="@+id/jamOperasional_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
