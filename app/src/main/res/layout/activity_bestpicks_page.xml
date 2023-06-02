@@ -48,7 +48,6 @@
                     android:textSize="12sp" />
             </LinearLayout>
         </RelativeLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBestPicks"
         android:layout_width="match_parent"
