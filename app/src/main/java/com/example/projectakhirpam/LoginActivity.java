@@ -1,10 +1,12 @@
 package com.example.projectakhirpam;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,9 +38,51 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
+        final EditText email = findViewById(R.id.emailLogin);
+        final EditText password = findViewById(R.id.passwordLogin);
+        final Button loginButton = findViewById(R.id.buttonLogin);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String emailtxt = email.getText().toString();
+                final String passwordtxt = password.getText().toString();
+
+                if (emailtxt.isEmpty() || passwordtxt.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Please fill the form correctly", Toast.LENGTH_SHORT).show();
+                }
+
+                auth.createUserWithEmailAndPassword(emailtxt, passwordtxt)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
 
         // Start Intent Register
         TextView register = findViewById(R.id.btnRegister);
