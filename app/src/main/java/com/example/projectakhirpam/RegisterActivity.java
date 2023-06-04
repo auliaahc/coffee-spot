@@ -35,12 +35,13 @@ import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://project-akhir-pam-e48df-default-rtdb.firebaseio.com/");
+    private EditText emailRegister,usernameRegister, passwordRegister;
     Button google;
     FirebaseAuth auth;
     FirebaseDatabase database;
     GoogleSignInClient mGoogleSignInClient;
     ProgressDialog progressDialog;
+    DatabaseReference databaseReference;
 
     @Override
     public void onStart() {
@@ -58,14 +59,15 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
 
-        final EditText email = findViewById(R.id.emailRegister);
-        final EditText username = findViewById(R.id.usernameRegister);
-        final EditText password = findViewById(R.id.passwordRegister);
-        final Button registerButton = findViewById(R.id.buttonRegister);
+        emailRegister = findViewById(R.id.emailRegister);
+        usernameRegister = findViewById(R.id.usernameRegister);
+        passwordRegister = findViewById(R.id.passwordRegister);
+        Button registerButton = findViewById(R.id.buttonRegister);
 
         google = findViewById(R.id.GoogleLogin);
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
         progressDialog = new ProgressDialog(RegisterActivity.this);
         progressDialog.setTitle("Creating account");
@@ -85,32 +87,46 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                String emailtxt = email.getText().toString();
-                String usernametxt = username.getText().toString();
-                String passwordtxt = password.getText().toString();
-
-                if (emailtxt.isEmpty() || usernametxt.isEmpty() || passwordtxt.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Please fill the form correctly", Toast.LENGTH_SHORT).show();
-                }
-
-                auth.createUserWithEmailAndPassword(emailtxt, passwordtxt)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(RegisterActivity.this, "Account created", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+            public void onClick(View v) {
+                registerUser();
             }
         });
+    }
 
+    private void registerUser() {
+        String emailtxt = emailRegister.getText().toString();
+        String usernametxt = usernameRegister.getText().toString();
+        String passwordtxt = passwordRegister.getText().toString();
+
+        if (emailtxt.isEmpty() || usernametxt.isEmpty() || passwordtxt.isEmpty()) {
+            Toast.makeText(RegisterActivity.this, "Please fill the form correctly", Toast.LENGTH_SHORT).show();
+        }
+
+        auth.createUserWithEmailAndPassword(emailtxt, passwordtxt)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = auth.getCurrentUser();
+                            if (user != null) {
+                                String userId = user.getUid();
+                                DatabaseReference userRef = databaseReference.child(userId);
+                                userRef.child("email").setValue(emailtxt);
+                                userRef.child("name").setValue(usernametxt);
+                                userRef.child("password").setValue(passwordtxt);
+                                userRef.child("phoneNumber").setValue(0);
+
+                                Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+
+                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        } else {
+                            Toast.makeText(RegisterActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     int RC_SIGN_IN = 40;
