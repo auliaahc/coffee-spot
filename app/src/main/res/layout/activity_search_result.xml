@@ -60,6 +60,7 @@
                 android:layout_height="40dp"
                 android:background="@drawable/bg_rectangle"
                 android:text="Hasil Search"
+                android:textSize="12sp"
                 android:textAlignment="center">
             </EditText>
 
@@ -70,6 +71,7 @@
                 android:layout_marginLeft="50dp"
                 android:background="@drawable/bg_rectangle"
                 android:text="Hasil Search"
+                android:textSize="12sp"
                 android:textAlignment="center">
 
             </EditText>
