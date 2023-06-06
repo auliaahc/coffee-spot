@@ -1,12 +1,13 @@
 package com.example.projectakhirpam;
 
 public class Cafe {
-    String namaCafe, jamOperasional, alamat;
+    String namaCafe, jamOperasional, alamat, gambar;
 
-    public Cafe(String namaCafe, String jamOperasional, String alamat) {
+    public Cafe(String namaCafe, String jamOperasional, String alamat, String gambar) {
         this.namaCafe = namaCafe;
         this.jamOperasional = jamOperasional;
         this.alamat = alamat;
+        this.gambar = gambar;
     }
 
     public Cafe() {}
@@ -33,5 +34,13 @@ public class Cafe {
     public void setAlamat(String alamat) {
 
         this.alamat = alamat;
+    }
+    public String getGambar() {
+
+        return gambar;
+    }
+    public void setGambar(String gambar) {
+
+        this.gambar = gambar;
     }
 }

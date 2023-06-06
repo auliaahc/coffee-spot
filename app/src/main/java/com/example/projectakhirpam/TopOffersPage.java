@@ -19,10 +19,10 @@ public class TopOffersPage extends AppCompatActivity {
         recyclerCafe = findViewById(R.id.recyclerViewTopOffers);
         recyclerCafe.setHasFixedSize(true);
 
-        topOffersCafe.add(new Cafe("Sejenak Cafe", "24 Jam", "Malang"));
-        topOffersCafe.add(new Cafe("Roketto", "24 Jam", "Malang"));
-        topOffersCafe.add(new Cafe("Luma Cafe", "24 Jam", "Malang"));
-        topOffersCafe.add(new Cafe("Kedai Pok Ami-Ami", "24 Jam", "Malang"));
+        topOffersCafe.add(new Cafe("Sejenak Cafe", "24 Jam", "Malang", "https://drive.google.com/file/d/1ZpiKIMvGVBeIrOMxHHQfEjvaWPMK2hdM/view?usp=drive_link"));
+        topOffersCafe.add(new Cafe("Roketto", "24 Jam", "Malang", "https://drive.google.com/file/d/1d5H2wKQE4eBHUfZ34WfkhPD7-kUb9CSS/view?usp=drive_link"));
+        topOffersCafe.add(new Cafe("Luma Cafe", "24 Jam", "Malang", "https://drive.google.com/file/d/1f6FX9fUxCL-oPhJiOdAy25ZAzFo9TV90/view?usp=drive_link"));
+        topOffersCafe.add(new Cafe("Kedai Pok Ami-Ami", "24 Jam", "Malang", "https://drive.google.com/file/d/1tEwS3NabV0Soa3mcecLj6cglcZJCgNae/view?usp=drive_link"));
 
         TopOffersAdapter = new TopOffersAdapter(this, topOffersCafe);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(TopOffersPage.this);

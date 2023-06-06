@@ -42,7 +42,7 @@
         android:id="@+id/content1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
@@ -59,7 +59,9 @@
                 android:layout_weight="2"
                 android:fontFamily="@font/poppinsmedium"
                 android:text="Best Picks"
-                android:textSize="16sp"></TextView>
+                android:textSize="16sp">
+
+            </TextView>
 
             <TextView
                 android:layout_width="match_parent"
@@ -69,23 +71,28 @@
                 android:text="see all"
                 android:textAlignment="textEnd"
                 android:textColor="@color/coklat"
-                android:textSize="14sp"></TextView>
+                android:textSize="14sp">
+
+            </TextView>
         </LinearLayout>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/imageButton1"
+                    android:id="@+id/recyclerViewHomePage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="25dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/homecafe_item"
+                    tools:itemCount="4">
                 </androidx.recyclerview.widget.RecyclerView>
 
             </LinearLayout>
@@ -131,15 +138,17 @@
             android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/recyclerViewHomePage2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:cardCornerRadius="25dp">
+                    app:cardCornerRadius="25dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/homecafe_item"
+                    tools:itemCount="4">
                 </androidx.recyclerview.widget.RecyclerView>
 
             </LinearLayout>
