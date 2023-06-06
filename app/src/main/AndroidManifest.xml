@@ -33,6 +33,9 @@
             android:name=".EditProfileActivity"
             android:exported="true" />
         <activity
+            android:name=".HomePage"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true" />
     </application>
