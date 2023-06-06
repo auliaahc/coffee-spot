@@ -3,53 +3,53 @@ package com.example.projectakhirpam;
 public class DetailCafe {
     String detailNamaCafe, detailJamOperasional, detailAlamat, detailKategori, detailDeskripsi;
 
-    public DetailCafe(String namaCafe, String jamOperasional, String alamat, String kategori, String deskripsi) {
-        this.namaCafe = namaCafe;
-        this.jamOperasional = jamOperasional;
-        this.alamat = alamat;
-        this.deskripsi = deskripsi;
-        this.kategori = kategori;
+    public DetailCafe(String detailNamaCafe, String detailJamOperasional, String detailAlamat, String detailKategori, String detailDeskripsi) {
+        this.detailNamaCafe = detailNamaCafe;
+        this.detailJamOperasional = detailJamOperasional;
+        this.detailAlamat = detailAlamat;
+        this.detailDeskripsi = detailDeskripsi ;
+        this.detailKategori = detailKategori;
     }
 
     public DetailCafe() {}
-    public String getNamaCafe() {
+    public String getdetailNamaCafe() {
 
-        return namaCafe;
+        return detailNamaCafe;
     }
-    public void setNamaCafe(String namaCafe) {
+    public void setdetailNamaCafe(String detailNamaCafe) {
 
-        this.namaCafe = namaCafe;
+        this.detailNamaCafe = detailNamaCafe;
     }
-    public String getJamOperasional() {
+    public String getdetailJamOperasional() {
 
-        return jamOperasional;
+        return detailJamOperasional;
     }
-    public void setJamOperasional(String jamOperasional) {
+    public void setdetailJamOperasional(String detailJamOperasional) {
 
-        this.jamOperasional = jamOperasional;
+        this.detailJamOperasional = detailJamOperasional;
     }
-    public String getAlamat() {
+    public String getDetailAlamat() {
 
-        return alamat;
+        return detailAlamat;
     }
-    public void setAlamat(String alamat) {
+    public void setDetailAlamat(String detailAlamat) {
 
-        this.alamat = alamat;
+        this.detailAlamat = detailAlamat;
     }
-    public String getKategori() {
+    public String getdetailKategori() {
 
-        return kategori;
+        return detailKategori;
     }
-    public void setKategori(String kategori) {
+    public void setDetailKategori(String detailKategori) {
 
-        this.kategori = kategori;
+        this.detailKategori = detailKategori;
     }
-    public String getDeskripsi() {
+    public String getDetailDeskripsi() {
 
-        return deskripsi;
+        return detailDeskripsi;
     }
-    public void setDeskripsi(String deskripsi) {
+    public void setDetailDeskripsi(String detailDeskripsi) {
 
-        this.deskripsi = deskripsi;
+        this.detailDeskripsi = detailDeskripsi;
     }
 }
