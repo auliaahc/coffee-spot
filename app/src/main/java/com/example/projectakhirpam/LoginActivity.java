@@ -65,22 +65,30 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (emailtxt.isEmpty() || passwordtxt.isEmpty()) {
                     Toast.makeText(LoginActivity.this, "Please fill the form correctly", Toast.LENGTH_SHORT).show();
-                }
-
-                auth.createUserWithEmailAndPassword(emailtxt, passwordtxt)
-                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(LoginActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                } else {
+                    auth.signInWithEmailAndPassword(emailtxt, passwordtxt)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                        FirebaseUser user = auth.getCurrentUser();
+                                        if (user != null) {
+                                            // Email dan password cocok
+                                            // Lakukan tindakan yang sesuai, seperti pindah ke halaman beranda
+                                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                            finish();
+                                        } else {
+                                            // Terjadi kesalahan, user null
+                                            Toast.makeText(LoginActivity.this, "Failed to get user information", Toast.LENGTH_SHORT).show();
+                                        }
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "Invalid email or password", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                }
             }
         });
 
