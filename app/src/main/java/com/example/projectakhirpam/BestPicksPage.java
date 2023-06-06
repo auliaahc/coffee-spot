@@ -19,7 +19,6 @@ public class BestPicksPage extends AppCompatActivity {
         recyclerCafe = findViewById(R.id.recyclerViewBestPicks);
         recyclerCafe.setHasFixedSize(true);
 
-        ArrayList<a> aa = new ArrayList<>(R.drawable.aadk)
 
         bestPicksCafe.add(new Cafe("Ada Apa Dengan Kopi (AADK)", "24 Jam", "Malang", "https://drive.google.com/file/d/19p6wc6MYG6kNUJiGFE3z8xCAt1HkBkVr/view?usp=drive_link"));
         bestPicksCafe.add(new Cafe("Robucca", "24 Jam", "Malang", "https://drive.google.com/file/d/1zD9etzejTzVrPE4uHeTHcGU0Tj21mYGW/view?usp=drive_link"));
