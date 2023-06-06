@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
+import com.example.projectakhirpam.Cafe;
 import java.util.ArrayList;
 
 public class BestPickAdapter extends RecyclerView.Adapter<BestPickAdapter.ViewHolder> {
@@ -33,6 +36,7 @@ public class BestPickAdapter extends RecyclerView.Adapter<BestPickAdapter.ViewHo
         holder.tvNama.setText(contact.getNamaCafe());
         holder.tvAlamat.setText(contact.getAlamat());
         holder.tvJamOperasional.setText(contact.getJamOperasional());
+        Glide.with(context).load(bestPicksCafe.get(position).gambar).placeholder(R.mipmap.ic_launcher).into(holder.ivImage);
     }
 
     @Override
@@ -44,12 +48,15 @@ public class BestPickAdapter extends RecyclerView.Adapter<BestPickAdapter.ViewHo
         LinearLayout linearLayout;
         TextView tvNama, tvAlamat, tvJamOperasional;
 
+        ImageView ivImage;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             linearLayout = itemView.findViewById(R.id.linear_layout);
             tvNama = itemView.findViewById(R.id.tv_nama);
             tvAlamat = itemView.findViewById(R.id.tv_alamat);
             tvJamOperasional = itemView.findViewById(R.id.tv_jamOperasional);
+            ivImage = itemView.findViewById(R.id.iv_image);
         }
     }
 }

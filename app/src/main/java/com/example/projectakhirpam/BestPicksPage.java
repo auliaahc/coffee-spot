@@ -19,10 +19,12 @@ public class BestPicksPage extends AppCompatActivity {
         recyclerCafe = findViewById(R.id.recyclerViewBestPicks);
         recyclerCafe.setHasFixedSize(true);
 
-        bestPicksCafe.add(new Cafe("Ada Apa Dengan Kopi (AADK)", "24 Jam", "Malang"));
-        bestPicksCafe.add(new Cafe("Robucca", "24 Jam", "Malang"));
-        bestPicksCafe.add(new Cafe("Pesen Kopi Plus", "24 Jam", "Malang"));
-        bestPicksCafe.add(new Cafe("Handall Coffee", "24 Jam", "Malang"));
+        ArrayList<a> aa = new ArrayList<>(R.drawable.aadk)
+
+        bestPicksCafe.add(new Cafe("Ada Apa Dengan Kopi (AADK)", "24 Jam", "Malang", "https://drive.google.com/file/d/19p6wc6MYG6kNUJiGFE3z8xCAt1HkBkVr/view?usp=drive_link"));
+        bestPicksCafe.add(new Cafe("Robucca", "24 Jam", "Malang", "https://drive.google.com/file/d/1zD9etzejTzVrPE4uHeTHcGU0Tj21mYGW/view?usp=drive_link"));
+        bestPicksCafe.add(new Cafe("Pesen Kopi Plus", "24 Jam", "Malang", "https://drive.google.com/file/d/1wnF7GdgfbUn4S4Ngf9-ZicdRcgV9_Skd/view?usp=drive_link"));
+        bestPicksCafe.add(new Cafe("Handall Coffee", "24 Jam", "Malang", "https://drive.google.com/file/d/1dirmelO_gyfOwkz5HzmEZeS9QFaVZE4O/view?usp=drive_link"));
 
         BestPickAdapter = new BestPickAdapter(this, bestPicksCafe);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BestPicksPage.this);
