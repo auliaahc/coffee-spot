@@ -58,7 +58,7 @@
                 android:id="@+id/search_result_button_1"
                 android:layout_width="130dp"
                 android:layout_height="40dp"
-                android:background="@drawable/bg_rectangle"
+                android:background="@drawable/bg_rectangle2"
                 android:text="Hasil Search"
                 android:textSize="12sp"
                 android:textAlignment="center">
@@ -69,7 +69,7 @@
                 android:layout_width="130dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
-                android:background="@drawable/bg_rectangle"
+                android:background="@drawable/bg_rectangle2"
                 android:text="Hasil Search"
                 android:textSize="12sp"
                 android:textAlignment="center">
@@ -104,7 +104,7 @@
                 android:layout_width="130dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/bg_rectangle"
+                android:background="@drawable/bg_rectangle2"
                 android:text="AADK Coffee &amp; \n Eatery"
                 android:textAlignment="center"
                 android:textSize="12sp">
@@ -116,7 +116,7 @@
                 android:layout_height="40dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/bg_rectangle"
+                android:background="@drawable/bg_rectangle2"
                 android:text="Rokétto Coffee &amp; Co"
                 android:textAlignment="center"
                 android:textSize="12sp">
