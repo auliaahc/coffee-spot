@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/warnaBackground"
     tools:context=".HomePage">
+    <include layout="@layout/activity_bottom_navbar" />
 
     <LinearLayout
         android:id="@+id/headerHomepage"
