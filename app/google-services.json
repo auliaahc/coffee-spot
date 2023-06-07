@@ -23,6 +23,22 @@
           }
         },
         {
+          "client_id": "121034913156-oom5nab3so999050nuhahqqojrkp6d5c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.projectakhirpam",
+            "certificate_hash": "26985c301a7318df687f4bd23f461e5361d42959"
+          }
+        },
+        {
+          "client_id": "121034913156-p5hi5ahengq8g3u12mht88den0q9t698.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.projectakhirpam",
+            "certificate_hash": "2e78c06fd446be6685d4df085f34f86951b5c05d"
+          }
+        },
+        {
           "client_id": "121034913156-esrivfuf58u7s4i6nbb8kfqtr4n6lluu.apps.googleusercontent.com",
           "client_type": 3
         }
