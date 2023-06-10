@@ -1,11 +1,20 @@
 package com.example.projectakhirpam;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -13,6 +22,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.Request;
+import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +38,35 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class ProfileActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
@@ -32,6 +75,10 @@ public class ProfileActivity extends AppCompatActivity {
     Button buttonSignout;
     ImageButton editProfile, backButton;
     ImageView pictureprofile;
+    Bitmap bitmap;
+    BitmapDrawable bitmapDrawable;
+    ImageView imageView;
+    private static final int PERMISSION_REQUEST_CODE = 1;
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
@@ -102,6 +149,41 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        pictureprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bitmapDrawable = (BitmapDrawable) pictureprofile.getDrawable();
+                bitmap = bitmapDrawable.getBitmap();
+
+                FileOutputStream fileOutputStream = null;
+
+                File sdCard = Environment.getExternalStorageDirectory();
+                File Directory = new File(sdCard.getAbsolutePath()+ "/Download");
+                Directory.mkdir();
+
+                String filename = String.format("%d.jpg",System.currentTimeMillis());
+                File outfile = new File(Directory,filename);
+
+                Toast.makeText(ProfileActivity.this, "Image Saved Successfully", Toast.LENGTH_SHORT).show();
+
+                try {
+                    fileOutputStream=new FileOutputStream(outfile);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,fileOutputStream);
+                    fileOutputStream.flush();
+                    fileOutputStream.close();
+
+                    Intent intent=new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                    intent.setData(Uri.fromFile(outfile));
+                    sendBroadcast(intent);
+
+                } catch ( FileNotFoundException e ){
+                    e.printStackTrace();
+                } catch ( IOException e ){
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
     private void loadProfileImage() {
@@ -127,3 +209,4 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 }
+
