@@ -7,11 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.util.UUID;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -29,9 +36,10 @@ public class EditProfileActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     TextView username, fullName, phoneNumber, emailLogin;
     Button buttonSaveprofile;
+    ImageButton backButton;
     FirebaseStorage storage;
     StorageReference storageRef;
-    ImageButton pictureprofile;
+    ImageView pictureprofile;
     private static final int PICK_IMAGE_REQUEST = 1;
 
     @SuppressLint("MissingInflatedId")
@@ -42,10 +50,10 @@ public class EditProfileActivity extends AppCompatActivity {
 
         username = findViewById(R.id.username);
         fullName = findViewById(R.id.fullName);
-        phoneNumber = findViewById(R.id.phoneNumber);
         emailLogin = findViewById(R.id.emailLogin);
         buttonSaveprofile = findViewById(R.id.buttonSaveprofile);
         pictureprofile = findViewById(R.id.pictureprofile);
+        backButton = findViewById(R.id.backButton);
 
         auth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -61,6 +69,8 @@ public class EditProfileActivity extends AppCompatActivity {
                     openGallery();
             }
         });
+
+        loadProfileImage();
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -99,6 +109,13 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     private void openGallery() {
@@ -119,8 +136,8 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void uploadImage(Uri imageUri) {
-        StorageReference imagesRef = storageRef.child("images/profile.jpg");
-
+        String fileName = UUID.randomUUID().toString() + ".jpg";
+        StorageReference imagesRef = storageRef.child("profiles").child(fileName);
         UploadTask uploadTask = imagesRef.putFile(imageUri);
 
         uploadTask.addOnSuccessListener(taskSnapshot -> {
@@ -145,6 +162,29 @@ public class EditProfileActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Failed to save image URL to database", Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    private void loadProfileImage() {
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            DatabaseReference userRef = databaseReference.child("Users").child(userId);
+
+            userRef.child("profile").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DataSnapshot dataSnapshot = task.getResult();
+                        if (dataSnapshot.exists()) {
+                            String imageUrl = dataSnapshot.getValue(String.class);
+                            Picasso.get().load(imageUrl).into(pictureprofile);
+                        }
+                    } else {
+                        Toast.makeText(EditProfileActivity.this, "Failed to load profile image", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
 }

@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = auth.getCurrentUser();
         if (currentUser != null) {
-            Intent intent = new Intent(getApplicationContext(), HomePage.class);
+            Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
             startActivity(intent);
             finish();
         }
@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                                             // Email dan password cocok
                                             // Lakukan tindakan yang sesuai, seperti pindah ke halaman beranda
                                             Intent intent = new Intent(LoginActivity.this, HomePage.class);
+                                            intent.putExtra("email", user.getEmail());
                                             startActivity(intent);
                                             finish();
                                         } else {
