@@ -24,9 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
-
     DatabaseReference databaseReference;
-
     TextView username, fullName, phoneNumber, emailLogin;
     Button buttonSignout;
     ImageButton editProfile;
@@ -47,8 +45,8 @@ public class ProfileActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         String userId = auth.getCurrentUser().getUid();
-
         DatabaseReference userRef = databaseReference.child("Users").child(userId);
+
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -60,13 +58,11 @@ public class ProfileActivity extends AppCompatActivity {
                     fullName.setText(name);
                     emailLogin.setText(email);
                     username.setText(usernamed);
-
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 
@@ -78,6 +74,14 @@ public class ProfileActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                startActivity(intent);
             }
         });
 
