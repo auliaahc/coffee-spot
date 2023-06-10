@@ -2,20 +2,26 @@ package com.example.projectakhirpam;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -23,6 +29,10 @@ public class EditProfileActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     TextView username, fullName, phoneNumber, emailLogin;
     Button buttonSaveprofile;
+    FirebaseStorage storage;
+    StorageReference storageRef;
+    ImageButton pictureprofile;
+    private static final int PICK_IMAGE_REQUEST = 1;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -35,11 +45,22 @@ public class EditProfileActivity extends AppCompatActivity {
         phoneNumber = findViewById(R.id.phoneNumber);
         emailLogin = findViewById(R.id.emailLogin);
         buttonSaveprofile = findViewById(R.id.buttonSaveprofile);
+        pictureprofile = findViewById(R.id.pictureprofile);
 
         auth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         String userId = auth.getCurrentUser().getUid();
         DatabaseReference userRef = databaseReference.child("Users").child(userId);
+
+        storage = FirebaseStorage.getInstance();
+        storageRef = storage.getReference();
+
+        pictureprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    openGallery();
+            }
+        });
 
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -79,4 +100,51 @@ public class EditProfileActivity extends AppCompatActivity {
         });
 
     }
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri selectedImageUri = data.getData();
+            pictureprofile.setImageURI(selectedImageUri);
+            uploadImage(selectedImageUri);
+        }
+    }
+
+    private void uploadImage(Uri imageUri) {
+        StorageReference imagesRef = storageRef.child("images/profile.jpg");
+
+        UploadTask uploadTask = imagesRef.putFile(imageUri);
+
+        uploadTask.addOnSuccessListener(taskSnapshot -> {
+            imagesRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                String downloadUrl = uri.toString();
+                saveImageUrlToDatabase(downloadUrl);
+            });
+        }).addOnFailureListener(e -> {
+            Toast.makeText(this, "Failed to upload image", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    private void saveImageUrlToDatabase(String imageUrl) {
+        FirebaseUser currentUser = auth.getCurrentUser();
+        String userId = currentUser.getUid();
+        DatabaseReference userRef = databaseReference.child("Users").child(userId);
+
+        userRef.child("profile").setValue(imageUrl)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Failed to save image URL to database", Toast.LENGTH_SHORT).show();
+                });
+    }
+
 }
