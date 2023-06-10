@@ -24,7 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 public class ProfileActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
-    FirebaseUser user;
+
+    DatabaseReference databaseReference;
 
     TextView username, fullName, phoneNumber, emailLogin;
     Button buttonSignout;
@@ -42,10 +43,32 @@ public class ProfileActivity extends AppCompatActivity {
         emailLogin = findViewById(R.id.emailLogin);
         buttonSignout = findViewById(R.id.buttonSignout);
         editProfile = findViewById(R.id.editProfile);
-        showAllUserData();
 
         auth = FirebaseAuth.getInstance();
-        user = auth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        String userId = auth.getCurrentUser().getUid();
+
+        DatabaseReference userRef = databaseReference.child("Users").child(userId);
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String name = dataSnapshot.child("name").getValue(String.class);
+                    String email = dataSnapshot.child("email").getValue(String.class);
+                    String usernamed = dataSnapshot.child("email").getValue(String.class);
+
+                    fullName.setText(name);
+                    emailLogin.setText(email);
+                    username.setText(usernamed);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         buttonSignout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,51 +81,5 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        editProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                passUserData();
-            }
-        });
-    }
-
-    public void showAllUserData(){
-        Intent intent = getIntent();
-        String dataUsername = intent.getStringExtra("email");
-        String dataFullname = intent.getStringExtra("name");
-        String dataPhoneNumber = intent.getStringExtra("phoneNumber");
-        String dataEmail = intent.getStringExtra("email");
-
-        username.setText(dataUsername);
-        fullName.setText(dataFullname);
-        phoneNumber.setText(dataPhoneNumber);
-        emailLogin.setText(dataEmail);
-    }
-
-    public void passUserData(){
-        String userUsername = username.getText().toString().trim();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-        Query checkUserDatabase = reference.orderByKey().equalTo(user.getUid());
-        checkUserDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    String usernameFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
-                    String fullnameFromDB = snapshot.child(userUsername).child("name").getValue(String.class);
-                    String phonenumberFromDB = snapshot.child(userUsername).child("phoneNUmber").getValue(String.class);
-                    String emailFromDB = snapshot.child(userUsername).child("email").getValue(String.class);
-                    Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
-
-                    intent.putExtra("name", usernameFromDB);
-                    intent.putExtra("email", fullnameFromDB);
-                    intent.putExtra("username", phonenumberFromDB);
-                    intent.putExtra("password", emailFromDB);
-                    startActivity(intent);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
     }
 }
