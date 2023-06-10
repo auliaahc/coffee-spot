@@ -54,6 +54,7 @@ public class EditProfileActivity extends AppCompatActivity {
         buttonSaveprofile = findViewById(R.id.buttonSaveprofile);
         pictureprofile = findViewById(R.id.pictureprofile);
         backButton = findViewById(R.id.backButton);
+        phoneNumber = findViewById(R.id.phoneNumber);
 
         auth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -80,6 +81,10 @@ public class EditProfileActivity extends AppCompatActivity {
                     String email = dataSnapshot.child("email").getValue(String.class);
                     String usernamed = dataSnapshot.child("email").getValue(String.class);
 
+                    Object phone = dataSnapshot.child("phoneNumber").getValue(Object.class);
+                    String phoned = phone != null ?phone.toString() : "";
+                    phoneNumber.setText(phoned);
+
                     fullName.setText(name);
                     emailLogin.setText(email);
                     username.setText(usernamed);
@@ -97,10 +102,12 @@ public class EditProfileActivity extends AppCompatActivity {
                 String name = fullName.getText().toString();
                 String email = emailLogin.getText().toString();
                 String usernamed = username.getText().toString();
+                String phone = phoneNumber.getText().toString();
 
                 userRef.child("name").setValue(name);
                 userRef.child("email").setValue(email);
                 userRef.child("email").setValue(usernamed);
+                userRef.child("phoneNumber").setValue(phone);
 
                 Toast.makeText(EditProfileActivity.this, "Update Profile Success", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);

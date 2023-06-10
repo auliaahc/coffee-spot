@@ -28,7 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
     DatabaseReference databaseReference;
-    TextView username, fullName, emailLogin;
+    TextView username, fullName, emailLogin, phoneNumber;
     Button buttonSignout;
     ImageButton editProfile, backButton;
     ImageView pictureprofile;
@@ -46,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
         editProfile = findViewById(R.id.editProfile);
         pictureprofile = findViewById(R.id.pictureprofile);
         backButton = findViewById(R.id.backButton);
+        phoneNumber = findViewById(R.id.phoneNumber);
 
         auth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -61,7 +62,9 @@ public class ProfileActivity extends AppCompatActivity {
                     String name = dataSnapshot.child("name").getValue(String.class);
                     String email = dataSnapshot.child("email").getValue(String.class);
                     String usernamed = dataSnapshot.child("email").getValue(String.class);
+                    String phone = dataSnapshot.child("phoneNumber").getValue(String.class);
 
+                    phoneNumber.setText(phone);
                     fullName.setText(name);
                     emailLogin.setText(email);
                     username.setText(usernamed);
@@ -123,5 +126,4 @@ public class ProfileActivity extends AppCompatActivity {
             });
         }
     }
-
 }

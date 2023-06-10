@@ -171,7 +171,7 @@ public class LoginActivity extends AppCompatActivity {
                             users.setUserId(user.getUid());
                             users.setProfile(user.getPhotoUrl().toString());
                             users.setName(user.getDisplayName());
-                            users.setPhoneNumber(0);
+                            users.setPhoneNumber(users.getPhoneNumber());
                             users.setEmail(user.getEmail());
 
                             database.getReference().child("Users").child(user.getUid()).setValue(users);

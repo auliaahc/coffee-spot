@@ -1,10 +1,9 @@
 package com.example.projectakhirpam;
 
 public class Users {
-    String userId, profile, name, email;
-    Integer phoneNumber;
+    String userId, profile, name, email, phoneNumber;
 
-    public Users(String userId, String profile, String name, Integer phoneNumber, String email) {
+    public Users(String userId, String profile, String name, String phoneNumber, String email) {
         this.userId = userId;
         this.profile = profile;
         this.name = name;
@@ -31,10 +30,10 @@ public class Users {
     public void setName(String name) {
         this.name = name;
     }
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     public String getEmail() {

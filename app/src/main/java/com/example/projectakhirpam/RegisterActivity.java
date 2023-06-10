@@ -1,12 +1,10 @@
 package com.example.projectakhirpam;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,13 +23,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.ValueEventListener;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -40,7 +33,6 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
     GoogleSignInClient mGoogleSignInClient;
-    ProgressDialog progressDialog;
     DatabaseReference databaseReference;
 
     @Override
@@ -68,10 +60,6 @@ public class RegisterActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
-
-        progressDialog = new ProgressDialog(RegisterActivity.this);
-        progressDialog.setTitle("Creating account");
-        progressDialog.setMessage("We are creating your account");
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -114,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 userRef.child("email").setValue(emailtxt);
                                 userRef.child("name").setValue(usernametxt);
                                 userRef.child("password").setValue(passwordtxt);
-                                userRef.child("phoneNumber").setValue(0);
+                                userRef.child("phoneNumber").setValue("-");
 
                                 Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
 
@@ -166,6 +154,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                             database.getReference().child("Users").child(user.getUid()).setValue(users);
 
+                            Toast.makeText(RegisterActivity.this, "Register with Google Success", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                             startActivity(intent);
 

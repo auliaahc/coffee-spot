@@ -95,28 +95,28 @@
             android:inputType="textPersonName"
             tools:ignore="TextSizeCheck"></EditText>
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:fontFamily="@font/poppinsmedium"-->
-<!--            android:text="Phone Number"-->
-<!--            android:textSize="16sp"></TextView>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="Phone Number"
+            android:textSize="16sp"></TextView>
 
-<!--        <EditText-->
-<!--            android:id="@+id/phoneNumber"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:background="@drawable/bg_input"-->
-<!--            android:gravity="center_vertical"-->
-<!--            android:hint="Phone Number"-->
-<!--            android:paddingLeft="25dp"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textColorHint="@color/warnaHint"-->
-<!--            android:textSize="15sp"-->
-<!--            android:inputType="phone"-->
-<!--            tools:ignore="TextSizeCheck"></EditText>-->
+        <EditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_input"
+            android:gravity="center_vertical"
+            android:hint="Phone Number"
+            android:paddingLeft="25dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/warnaHint"
+            android:textSize="15sp"
+            android:inputType="phone"
+            tools:ignore="TextSizeCheck"></EditText>
 
         <TextView
             android:layout_width="wrap_content"
