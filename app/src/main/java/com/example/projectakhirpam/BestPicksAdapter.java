@@ -11,21 +11,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
-public class TopOffersAdapter extends RecyclerView.Adapter<TopOffersAdapter.ViewHolder> {
+public class BestPicksAdapter extends RecyclerView.Adapter<BestPicksAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<Cafe> topOffersCafe;
-
+    private ArrayList<Cafe> bestPicksCafe;
     private static ClickListener clickListener;
 
-    public TopOffersAdapter (Context context, ArrayList<Cafe> topOffersCafe) {
+    public BestPicksAdapter(Context context, ArrayList<Cafe> bestPicksCafe) {
         this.context = context;
-        this.topOffersCafe = topOffersCafe;
+        this.bestPicksCafe = bestPicksCafe;
     }
 
     @NonNull
@@ -37,11 +35,13 @@ public class TopOffersAdapter extends RecyclerView.Adapter<TopOffersAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Cafe contact = topOffersCafe.get(position);
+        final Cafe contact = bestPicksCafe.get(position);
+        int gambar = bestPicksCafe.get(position).getGambar();
+
         holder.tvNama.setText(contact.getNamaCafe());
         holder.tvAlamat.setText(contact.getAlamat());
         holder.tvJamOperasional.setText(contact.getJamOperasional());
-        Glide.with(context).load(topOffersCafe.get(position).gambar).placeholder(R.mipmap.ic_launcher).into(holder.ivImage);
+        Glide.with(context).load(gambar).placeholder(R.mipmap.ic_launcher).into(holder.ivImage);
 
         holder.linearLayout.setOnClickListener(v -> {
             String detailNama = holder.tvNama.getText().toString();
@@ -57,6 +57,7 @@ public class TopOffersAdapter extends RecyclerView.Adapter<TopOffersAdapter.View
             bundle.putString("cDetailAlamat", detailAlamat);
             bundle.putString("cDetailDeskripsi", detailDeskripsi);
             bundle.putString("cDetailKategori", detailKategori);
+
             intent.putExtras(bundle);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
@@ -66,10 +67,10 @@ public class TopOffersAdapter extends RecyclerView.Adapter<TopOffersAdapter.View
     @Override
     public int getItemCount() {
 
-        return topOffersCafe.size();
+        return bestPicksCafe.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements ViewHolder1 {
+    public class ViewHolder extends RecyclerView.ViewHolder implements com.example.projectakhirpam.ViewHolder {
         LinearLayout linearLayout;
         TextView tvNama, tvAlamat, tvJamOperasional;
         ImageView ivImage;
@@ -80,7 +81,7 @@ public class TopOffersAdapter extends RecyclerView.Adapter<TopOffersAdapter.View
             tvNama = itemView.findViewById(R.id.tv_nama);
             tvAlamat = itemView.findViewById(R.id.tv_alamat);
             tvJamOperasional = itemView.findViewById(R.id.tv_jamOperasional);
-            ivImage= itemView.findViewById(R.id.iv_image);
+            ivImage = itemView.findViewById(R.id.iv_image);
         }
         @Override
         public void onClick(View v) {
@@ -88,8 +89,8 @@ public class TopOffersAdapter extends RecyclerView.Adapter<TopOffersAdapter.View
         }
     }
 
-    public void setOnItemClickListener(TopOffersAdapter.ClickListener clickListener) {
-        TopOffersAdapter.clickListener = clickListener;
+    public void setOnItemClickListener(BestPicksAdapter.ClickListener clickListener) {
+        BestPicksAdapter.clickListener = clickListener;
     }
 
     public interface ClickListener {

@@ -65,6 +65,7 @@
             </TextView>
 
             <TextView
+                android:id="@+id/bp_see"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -72,7 +73,8 @@
                 android:text="see all"
                 android:textAlignment="textEnd"
                 android:textColor="@color/coklat"
-                android:textSize="14sp">
+                android:textSize="14sp"
+                android:paddingRight="15dp">
 
             </TextView>
         </LinearLayout>
@@ -86,7 +88,7 @@
                 android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewHomePage"
+                    android:id="@+id/rvHomePage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="25dp"
@@ -120,9 +122,12 @@
                 android:layout_weight="2"
                 android:fontFamily="@font/poppinsmedium"
                 android:text="Top Offers"
-                android:textSize="16sp"></TextView>
+                android:textSize="16sp">
+
+            </TextView>
 
             <TextView
+                android:id="@+id/to_see"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -130,20 +135,25 @@
                 android:text="see all"
                 android:textAlignment="textEnd"
                 android:textColor="@color/coklat"
-                android:textSize="14sp"></TextView>
+                android:textSize="14sp"
+                android:paddingRight="15dp">
+
+            </TextView>
         </LinearLayout>
 
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewHomePage2"
-                    android:layout_width="match_parent"
+                    android:id="@+id/rvHomePage2"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:cardCornerRadius="25dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/homecafe_item"
@@ -153,6 +163,5 @@
             </LinearLayout>
         </HorizontalScrollView>
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

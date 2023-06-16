@@ -1,6 +1,7 @@
 package com.example.projectakhirpam;
 
 public class DetailCafe {
+
     String detailNamaCafe, detailJamOperasional, detailAlamat, detailKategori, detailDeskripsi;
 
     public DetailCafe(String detailNamaCafe, String detailJamOperasional, String detailAlamat, String detailKategori, String detailDeskripsi) {
