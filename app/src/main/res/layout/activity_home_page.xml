@@ -156,7 +156,7 @@
                     app:cardCornerRadius="25dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/homecafe_item"
+                    tools:listitem="@layout/homecafe2_item"
                     tools:itemCount="4">
                 </androidx.recyclerview.widget.RecyclerView>
 

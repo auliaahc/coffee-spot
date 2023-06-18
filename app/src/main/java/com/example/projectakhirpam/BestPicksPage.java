@@ -32,9 +32,6 @@ public class BestPicksPage extends AppCompatActivity {
         bestPicksCafe.add(new Cafe("OR Traffic", "24 Jam", "Jl. Raya Sengkaling, Mulyoagung, Kecamatan Dau, Malang", R.drawable.ortraffic, "#fastbarorpassion. Everyday 24 Hours 1st Floor | 2nd Floor | Rooftop \n \nInstagram : @traffic.or", "Best Picks"));
         bestPicksCafe.add(new Cafe("Hindia Koffie", "08.00 - 22.00", "Jl. Simpang Ijen No.7, Oro-oro Dowo, Kec. Klojen, Malang", R.drawable.hindia, "Nikmati hari liburmu dengan segelas cappuccino hangat dari Hindia #hindiakoffie · Minuman segar berbahan dasar kopi untuk sore di Malang yang panas  \n \nInstagram : @hindiakoffie", "Best Picks"));
 
-
-
-
         BestPicksAdapter = new BestPicksAdapter(this, bestPicksCafe);
         BestPicksAdapter = new BestPicksAdapter(getApplicationContext(), bestPicksCafe);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BestPicksPage.this);

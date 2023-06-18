@@ -18,7 +18,7 @@ public class DetailCafePage extends AppCompatActivity {
 
     TextView tvDetailNama, tvDetailJam, tvDetailAlamat, tvDetailDeskripsi, tvDetailKategori;
     ImageButton backButton;
-    ImageView imageView;
+    ImageView detailGambar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class DetailCafePage extends AppCompatActivity {
         tvDetailAlamat = findViewById(R.id.alamat_detail);
         tvDetailDeskripsi = findViewById(R.id.deskripsi_detail);
         tvDetailKategori = findViewById(R.id.category_detail);
-        imageView = findViewById(R.id.imageView);
+        detailGambar = findViewById(R.id.imageView);
 
 //        get intent extra
         if (getIntent().getExtras() != null) {
@@ -41,12 +41,14 @@ public class DetailCafePage extends AppCompatActivity {
             String getCDetailAlamat = bundle.getString("cDetailAlamat");
             String getCDetailDeskripsi = bundle.getString("cDetailDeskripsi");
             String getCDetailKategori = bundle.getString("cDetailKategori");
+            int getCDetailGambar = bundle.getInt("cDetailGambar");
 
             tvDetailNama.setText(getCDetailNama);
             tvDetailJam.setText(getCDetailJam);
             tvDetailAlamat.setText(getCDetailAlamat);
             tvDetailDeskripsi.setText(getCDetailDeskripsi);
             tvDetailKategori.setText(getCDetailKategori);
+            detailGambar.setImageResource(getCDetailGambar);
 
             backButton.setOnClickListener(v -> {
                 setResult(RESULT_OK, null);
