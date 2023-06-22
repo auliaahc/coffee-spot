@@ -49,7 +49,7 @@ public class TopOffersAdapter extends RecyclerView.Adapter<TopOffersAdapter.View
             String detailAlamat = holder.tvAlamat.getText().toString();
             String detailDeskripsi = contact.getDeskripsi();
             String detailKategori = contact.getKategori();
-            int detailGambar= contact.getGambar();
+            String detailGambar= contact.getGambar();
 
             Intent intent = new Intent(context, DetailCafePage.class);
             Bundle bundle = new Bundle();
@@ -58,7 +58,8 @@ public class TopOffersAdapter extends RecyclerView.Adapter<TopOffersAdapter.View
             bundle.putString("cDetailAlamat", detailAlamat);
             bundle.putString("cDetailDeskripsi", detailDeskripsi);
             bundle.putString("cDetailKategori", detailKategori);
-            bundle.putInt("cDetailGambar", detailGambar);
+            bundle.putString("cDetailGambar", detailGambar);
+
             intent.putExtras(bundle);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);

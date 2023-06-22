@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class DetailCafePage extends AppCompatActivity {
@@ -41,14 +43,16 @@ public class DetailCafePage extends AppCompatActivity {
             String getCDetailAlamat = bundle.getString("cDetailAlamat");
             String getCDetailDeskripsi = bundle.getString("cDetailDeskripsi");
             String getCDetailKategori = bundle.getString("cDetailKategori");
-            int getCDetailGambar = bundle.getInt("cDetailGambar");
+            String getCDetailGambar = bundle.getString("cDetailGambar");
 
             tvDetailNama.setText(getCDetailNama);
             tvDetailJam.setText(getCDetailJam);
             tvDetailAlamat.setText(getCDetailAlamat);
             tvDetailDeskripsi.setText(getCDetailDeskripsi);
             tvDetailKategori.setText(getCDetailKategori);
-            detailGambar.setImageResource(getCDetailGambar);
+            //detailGambar.setImageResource(getCDetailGambar);
+
+            Glide.with(getApplicationContext()).load(getCDetailGambar).placeholder(R.mipmap.ic_launcher).into(detailGambar);
 
             backButton.setOnClickListener(v -> {
                 setResult(RESULT_OK, null);

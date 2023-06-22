@@ -35,7 +35,7 @@ public class BestPicksAdapter extends RecyclerView.Adapter<BestPicksAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final Cafe contact = bestPicksCafe.get(position);
-        int gambar = bestPicksCafe.get(position).getGambar();
+        String gambar = bestPicksCafe.get(position).getGambar();
 
         holder.tvNama.setText(contact.getNamaCafe());
         holder.tvAlamat.setText(contact.getAlamat());
@@ -48,7 +48,7 @@ public class BestPicksAdapter extends RecyclerView.Adapter<BestPicksAdapter.View
             String detailAlamat = holder.tvAlamat.getText().toString();
             String detailDeskripsi = contact.getDeskripsi();
             String detailKategori = contact.getKategori();
-            int detailGambar= contact.getGambar();
+            String detailGambar= contact.getGambar();
 
             Intent intent = new Intent(context, DetailCafePage.class);
             Bundle bundle = new Bundle();
@@ -57,7 +57,7 @@ public class BestPicksAdapter extends RecyclerView.Adapter<BestPicksAdapter.View
             bundle.putString("cDetailAlamat", detailAlamat);
             bundle.putString("cDetailDeskripsi", detailDeskripsi);
             bundle.putString("cDetailKategori", detailKategori);
-            bundle.putInt("cDetailGambar", detailGambar);
+            bundle.putString("cDetailGambar", detailGambar);
 
             intent.putExtras(bundle);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

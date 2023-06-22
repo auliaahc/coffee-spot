@@ -27,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.DatabaseRegistrar;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
@@ -36,6 +37,9 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseDatabase database;
     GoogleSignInClient mGoogleSignInClient;
     ProgressDialog progressDialog;
+
+    DatabaseReference databaseReference;
+
 
     @Override
     public void onStart() {
@@ -52,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Cafes2");
 
         final EditText email = findViewById(R.id.emailLogin);
         final EditText password = findViewById(R.id.passwordLogin);

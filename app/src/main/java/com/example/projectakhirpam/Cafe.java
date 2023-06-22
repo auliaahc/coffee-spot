@@ -2,9 +2,9 @@ package com.example.projectakhirpam;
 
 public class Cafe {
     String namaCafe, jamOperasional, alamat, deskripsi, kategori;
-    int gambar;
+    String gambar;
 
-    public Cafe(String namaCafe, String jamOperasional, String alamat, int gambar, String deskripsi, String kategori) {
+    public Cafe(String namaCafe, String jamOperasional, String alamat, String gambar, String deskripsi, String kategori) {
         this.namaCafe = namaCafe;
         this.jamOperasional = jamOperasional;
         this.alamat = alamat;
@@ -38,11 +38,11 @@ public class Cafe {
 
         this.alamat = alamat;
     }
-    public int getGambar() {
+    public String getGambar() {
 
         return gambar;
     }
-    public void setGambar(int gambar) {
+    public void setGambar(String gambar) {
 
         this.gambar = gambar;
     }
